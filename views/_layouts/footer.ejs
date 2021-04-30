@@ -45,65 +45,8 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $('.sidenav').sidenav();
-        $('.dropdown-trigger').dropdown();
-        $('.carousel').carousel({
-            indicators: true
-        });
-        $('.slider').slider();
-        document.querySelector('#year').innerHTML = new Date().getFullYear();
-        // $('input.autocomplete').autocomplete({
-        //     data: {
-        //         "Apple": null,
-        //         "Microsoft": null,
-        //         "Google": 'https://placehold.it/250x250'
-        //     },
-        // });
-        $('.clearcart').on('click', () => {
-        if (!confirm('Confirm clearing cart!')) {
-            return false;
-        }
-    })
-
-         //search completion
-
-    $('#searchbox').autocomplete({
-      source: function(req,res){
-          $.ajax({
-              url:"/search",
-              dataType: "json",
-              type: "get",
-              data:req,
-              success: function(data){
-                  // let source = []
-                  // if(data){
-                  //     data.forEach(element => {
-
-                  //         source.push(element.name)
-                  //     });
-                  //     res(source)
-                  // }
-                  res(data)
-                  
-              },
-              error: function(err){
-                  console.log(err.status)
-              }
-          })
-      },
-
-      minLength: 1,
-      select: function(event,ui){
-          if(ui.item){
-              
-              $('#searchbox').val(ui.item.label)
-          }
-      }
-  })
-    });
-</script>
+<!-- added custom js -->
+<script src="/javascripts/main.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+
+    </style>
+</head>
+
+<body class="grey lighten-4">
+    <!-- navbar -->
+    <header>
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#!" class="brand-logo">Admin Pannel</a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="dashboard.html"><i class="material-icons left">dashboard</i></a></li>
+                    <li><a href="categories.html">Categories</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="orders.html">Orders</a></li>
+                    <li><a href="#">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+
+
+
+        <ul class="sidenav" id="mobile-demo">
+            <li><a href="dashboard.html"><i class="material-icons left">dashboard</i></a></li>
+            <li><a href="categories.html">Categories</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="orders.html">Orders</a></li>
+            <li><a href="#">Logout</a></li>
+        </ul>
+    </header>
+
+    <div class="white z-depth-1" style="padding: 0 5px; margin:5px;">
+        <h4 class="center">Orders</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th>Customer Name</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>trxId</th>
+                    <th>Orders</th>
+                    <th>Total Price</th>
+                    <th>Status</th>
+                    <th>Change Status</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>Sohanur Rahman</td>
+                    <td>01759229215</td>
+                    <td>Baharampur</td>
+                    <td>15125126</td>
+                    <td>Asus Tuf fx 505 Qty-1</td>
+                    <td>83000</td>
+                    <td><i class=" material-icons">check</i></td>
+                    <td><a href=""><i class=" material-icons">sync</i></a></td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+    <!-- footer -->
+
+    <footer class="page-footer grey darken-3">
+        <div class="footer-copyright grey darken-4">
+            <div class="container center-align">
+                &copy; Goodsmart <span id="year"></span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.sidenav').sidenav();
+            document.querySelector('#year').innerHTML = new Date().getFullYear();
+        });
+    </script>
+</body>
+
+</html>

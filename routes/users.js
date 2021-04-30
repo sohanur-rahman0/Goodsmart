@@ -21,13 +21,11 @@ router.get('/register', (req, res) => {
 
 router.post('/register',
     [
-        check('name').isLength({ min: 1 }).withMessage('Name is required'),
-        check('email').isEmail().withMessage('Email is required'),
+        check('email').isLength({ min: 1 }).withMessage('Email is required').isEmail().withMessage('Enter a valid email'),
         check('username').isLength({ min: 1 }).withMessage('Username is required'),
-        check('address').isLength({min: 1}).withMessage('Address is required for home delivery'),
-        check('phone').isLength({min: 11}).withMessage('Phone number is required'),
-        check('password').isLength({ min: 5 }).withMessage('Password is required and should be more than 5 character'),
-        check('password2').custom((value, { req }) => {
+        check('phone').isLength({ min: 11 }).withMessage('A valid Phone number is required'),
+        check('password').isLength({ min: 8 }).withMessage('Password is required and should be 8 or more character'),
+        check('confirm_password').custom((value, { req }) => {
             // console.log(value)
             // console.log(req.body.password2)
             if (value !== req.body.password) {
@@ -39,20 +37,26 @@ router.post('/register',
         }),
     ], (req, res) => {
 
-        let name = req.body.name;
+
         let email = req.body.email
         let username = req.body.username
         let password = req.body.password
         let password2 = req.body.password2
-        let address = req.body.address
         let phone = req.body.phone
 
         let errors = validationResult(req)
 
         if (errors.errors.length > 0) {
+            let err = {}
+            errors.errors.forEach((error) => {
+                err[error.param] = error.msg
+            })
+
+            // console.log(err)
+
             res.render('register', {
                 title: "Register",
-                errors: errors,
+                errors: err,
                 user: null,
             })
         } else {
@@ -62,14 +66,14 @@ router.post('/register',
                 }
 
                 if (user) {
-                    req.flash('danger', 'Username exists, choose another')
+                    req.flash('danger', 'Username already exists, choose another')
                     res.redirect('/users/register')
                 } else {
                     let user = new User({
-                        name: name,
+
                         email: email,
                         username: username,
-                        address: address,
+
                         phone: phone,
                         password: password,
                         admin: 0
@@ -102,8 +106,6 @@ router.post('/register',
             })
         }
 
-
-
     })
 
 //get login page
@@ -133,7 +135,7 @@ router.post('/login', (req, res, next) => {
 
 //get log out
 
-router.get('/logout', (req, res)=>{
+router.get('/logout', (req, res) => {
     req.logout()
     req.flash('success', 'You are logged out')
     res.redirect('/users/login')

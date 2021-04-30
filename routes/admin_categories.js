@@ -5,6 +5,7 @@ const router = express.Router()
 const auth = require('../config/auth')
 const isAdmin = auth.isAdmin;
 
+
 const { check, validationResult } = require('express-validator')
 
 //get category model
@@ -14,7 +15,7 @@ let Category = require('../models/category')
 
 //Get category index
 
-router.get('/',isAdmin,(req, res) => {
+router.get('/', isAdmin, (req, res) => {
 
     Category.find((err, categories) => {
         if (err) {
@@ -31,7 +32,7 @@ router.get('/',isAdmin,(req, res) => {
 
 //Get add category page
 
-router.get('/add-category',isAdmin, (req, res) => {
+router.get('/add-category', isAdmin, (req, res) => {
     let title = ""
 
     res.render('admin/add_category', {
@@ -42,7 +43,7 @@ router.get('/add-category',isAdmin, (req, res) => {
 
 // post category 
 
-router.post('/add-category',isAdmin, [check('title').isLength({ min: 1 }).withMessage('Title is Empty')], (req, res) => {
+router.post('/add-category', isAdmin, [check('title').isLength({ min: 1 }).withMessage('Title is Empty')], (req, res) => {
 
 
     let title = req.body.title
@@ -52,9 +53,13 @@ router.post('/add-category',isAdmin, [check('title').isLength({ min: 1 }).withMe
     let errors = validationResult(req)
 
     if (errors.errors.length > 0) {
-        console.log('errors')
+        // console.log('errors')
+        let err = {}
+        errors.errors.forEach((error) => {
+            err[error.param] = error.msg
+        })
         res.render('admin/add_category', {
-            errors: errors,
+            errors: err,
             title: title,
         })
     } else {
@@ -92,8 +97,6 @@ router.post('/add-category',isAdmin, [check('title').isLength({ min: 1 }).withMe
             }
         })
     }
-
-
 })
 
 //post reorder pages
@@ -123,7 +126,7 @@ router.post('/add-category',isAdmin, [check('title').isLength({ min: 1 }).withMe
 
 //Get edit category
 
-router.get('/edit-category/:id',isAdmin,(req, res) => {
+router.get('/edit-category/:id', isAdmin, (req, res) => {
     Category.findById(req.params.id, (err, category) => {
         if (err) {
             console.log(err)
@@ -140,7 +143,7 @@ router.get('/edit-category/:id',isAdmin,(req, res) => {
 
 //post edit category
 
-router.post('/edit-category/:id',isAdmin, [check('title').isLength({ min: 1 }).withMessage('Title is Empty')], (req, res) => {
+router.post('/edit-category/:id', isAdmin, [check('title').isLength({ min: 1 }).withMessage('Title is Empty')], (req, res) => {
 
 
     let title = req.body.title
@@ -150,16 +153,20 @@ router.post('/edit-category/:id',isAdmin, [check('title').isLength({ min: 1 }).w
     let id = req.params.id
 
     let errors = validationResult(req)
-
+    // console.log(errors)
     if (errors.errors.length > 0) {
-        console.log('errors')
+        let err = {}
+        errors.errors.forEach((error) => {
+            err[error.param] = error.msg
+        })
+
         res.render('admin/edit_category', {
-            errors: errors,
+            errors: err,
             title: title,
             id: id
         })
     } else {
-        console.log('success')
+
         Category.findOne({ slug: slug, _id: { '$ne': id } }, (err, category) => {
             if (category) {
                 req.flash('danger', 'Category title exists, choose another.')
@@ -205,7 +212,7 @@ router.post('/edit-category/:id',isAdmin, [check('title').isLength({ min: 1 }).w
 
 //Get delete category
 
-router.get('/delete-category/:id',isAdmin, (req, res) => {
+router.get('/delete-category/:id', isAdmin, (req, res) => {
     Category.findByIdAndDelete(req.params.id, (err) => {
         if (err) {
             console.log(err)

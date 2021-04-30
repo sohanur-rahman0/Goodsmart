@@ -10,6 +10,7 @@ const session = require('express-session')
 const { check, validationResult } = require('express-validator')
 const fileUpload = require('express-fileupload')
 const passport = require('passport')
+var flash = require('connect-flash');
 // end module including section
 
 
@@ -49,12 +50,26 @@ app.use(session({
   // cookie: { secure: true }
 }))
 
+app.use(flash());
+
+// app.use(function (req, res, next) {
+//   res.locals.success_messages = req.flash('success_messages');
+//   res.locals.error_messages = req.flash('error_messages');
+//   next();
+// });
+
 //express messages middleware
 app.use(require('connect-flash')());
 app.use(function (req, res, next) {
   res.locals.messages = require('express-messages')(req, res);
   next();
 });
+
+// app.configure(function () {
+//   app.use(express.cookieParser('keyboard cat'));
+//   app.use(express.session({ cookie: { maxAge: 60000 } }));
+//   app.use(flash());
+// });
 
 //passport config
 
@@ -99,6 +114,7 @@ Category.find((err, categories) => {
 const users = require('./routes/users.js')
 const cart = require('./routes/cart.js')
 const products = require('./routes/products.js')
+const adminDashboard = require('./routes/admin_dashboard.js')
 const adminCategories = require('./routes/admin_categories.js')
 const adminProducts = require('./routes/admin_products.js')
 const adminOrders = require('./routes/admin_orders.js')
@@ -108,6 +124,7 @@ const adminOrders = require('./routes/admin_orders.js')
 app.use('/', products)
 app.use('/cart', cart)
 app.use('/users', users)
+app.use('/admin/dashboard', adminDashboard)
 app.use('/admin/categories', adminCategories)
 app.use('/admin/products', adminProducts)
 app.use('/admin/orders', adminOrders)

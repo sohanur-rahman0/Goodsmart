@@ -7,7 +7,8 @@ const isUser = auth.isUser;
 let Product = require('../models/product')
 
 //Get category model
-let Category = require('../models/category')
+let Category = require('../models/category');
+
 
 
 //get all product
@@ -40,14 +41,17 @@ router.get('/', (req, res) => {
 router.get('/products/:category', (req, res) => {
 
     let categorySlug = req.params.category;
+    //console.log(categorySlug)
     Category.find({slug: categorySlug }, (err, c) => {
         Product.find({category: categorySlug}, (err,products)=>{
             if (err) {
                 console.log(err)
             }
+            // console.log(c)
     
             res.render('cat_products', {
-                title: c.title,
+                // title: c.title,
+                title: "Category Products",
                 products: products,
                 categories: c,
                 
@@ -68,7 +72,7 @@ router.get('/products/:category/:product', (req, res) => {
 
     let loggedIn = (req.isAuthenticated()) ? true : false
 
-
+// console.log(req.params.product)
 
     Product.findOne({slug: req.params.product}, (err,product)=>{
         // console.log(product)
@@ -81,9 +85,10 @@ router.get('/products/:category/:product', (req, res) => {
                     //  console.log(err)
                 //  } else {
                     //  galleryImages = files;
-                    console.log(product)
+                    // console.log(product)
                      res.render('product', {
-                        title: product.title,
+                        // title: product.title,
+                        title: "Product Description",
                          p: product,
                         //  galleryImages: galleryImages,
                          loggedIn: loggedIn,

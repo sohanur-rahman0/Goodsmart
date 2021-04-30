@@ -18,7 +18,7 @@
                 </div>
 
                 <div class="input-field">
-                    <select>
+                    <select name="category">
                         <option value="" disabled selected>Choose a Category</option>
                         <% categories.forEach((cat)=> { %>
                             <option value="<%= cat.slug %>" <% if(cat.slug==category){ %>
@@ -62,5 +62,5 @@
             </form>
         </div>
     </div>
-
+    <script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
     <%- include('../_layouts/adminfooter') %>  

@@ -1,71 +1,58 @@
 <%- include('_layouts/header') %>
     <section class="container">
         <form action="/users/register" method="POST" class="white z-depth-2 login_form">
-            <%- messages('messages', locals) %>
-                <h4 class="center grey-text">Signup</h4>
-                <% if (messages) { %>
-                    <div class="alert">
-                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-                        <%= messages.danger %>
-                    </div>
+            <div class="input-field">
+                <label for="username">Username</label>
+                <input type="text" name="username" value="">
+                <span class="helper-text" data-error="Username must be 5 to 12 character long" data-success=""></span>
+                <div class="red-text">
+                    <%= errors.username %>
+                </div>
+            </div>
 
+            <div class="input-field">
+                <label for="email">Email</label>
+                <input type="email" name="email" value="">
+                <span class="helper-text" data-error="Enter a valid email address" data-success=""></span>
+                <div class="red-text">
+                    <%= errors.email %>
+                </div>
+            </div>
 
-                    <% } %>
+            <div class="input-field">
+                <label for="phone">Phone</label>
+                <input type="text" name="phone" value="">
+                <span class="helper-text" data-error="Phone numbers have to from 0-9 and 11 digit long"
+                    data-success="right"></span>
+                <div class="red-text">
+                    <%= errors.phone %>
+                </div>
+            </div>
 
+            <div class="input-field">
+                <label for="password">Password</label>
+                <input type="password" name="password" value="">
+                <span class="helper-text" data-error="Password have to at least 8 character long"
+                    data-success="right"></span>
+                <div class="red-text">
+                    <%= errors.password %>
+                </div>
+            </div>
 
-                        <div class="input-field">
-                            <label for="username">Username</label>
-                            <input type="text" name="username" value="">
-                            <span class="helper-text" data-error="Username must be 5 to 12 character long"
-                                data-success=""></span>
-                            <div class="red-text">
-                                <%= errors.username %>
-                            </div>
-                        </div>
-
-                        <div class="input-field">
-                            <label for="email">Email</label>
-                            <input type="email" name="email" value="">
-                            <span class="helper-text" data-error="Enter a valid email address" data-success=""></span>
-                            <div class="red-text">
-                                <%= errors.email %>
-                            </div>
-                        </div>
-
-                        <div class="input-field">
-                            <label for="phone">Phone</label>
-                            <input type="text" name="phone" value="">
-                            <span class="helper-text" data-error="Phone numbers have to from 0-9 and 11 digit long"
-                                data-success="right"></span>
-                            <div class="red-text">
-                                <%= errors.phone %>
-                            </div>
-                        </div>
-
-                        <div class="input-field">
-                            <label for="password">Password</label>
-                            <input type="password" name="password" value="">
-                            <span class="helper-text" data-error="Password have to at least 8 character long"
-                                data-success="right"></span>
-                            <div class="red-text">
-                                <%= errors.password %>
-                            </div>
-                        </div>
-
-                        <div class="input-field">
-                            <label for="confirm_password">Confirm Password</label>
-                            <input type="password" name="confirm_password" value="">
-                            <div class="red-text">
-                                <%= errors.confirm_password %>
-                            </div>
-                        </div>
-                        <div class="center input-field">
-                            <input id="submit" type="submit" name="submit" value="Signup"
-                                style="width: 100%; margin-top: 15px;" class="btn brand z-depth-0">
-                        </div>
-                        <p style="display: inline-block">Alreay a member?</p>
-                        <a href="/user/login">Login</a>
+            <div class="input-field">
+                <label for="confirm_password">Confirm Password</label>
+                <input type="password" name="confirm_password" value="">
+                <div class="red-text">
+                    <%= errors.confirm_password %>
+                </div>
+            </div>
+            <div class="center input-field">
+                <input id="submit" type="submit" name="submit" value="Signup" style="width: 100%; margin-top: 15px;"
+                    class="btn brand z-depth-0">
+            </div>
+            <p style="display: inline-block">Alreay a member?</p>
+            <a href="/user/login">Login</a>
         </form>
     </section>
 
-    <%- include('_layouts/footer') %> 
+    <%- include('_layouts/footer') %>

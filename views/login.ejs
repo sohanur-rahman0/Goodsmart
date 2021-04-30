@@ -2,36 +2,22 @@
     <section class="container">
         <form action="/users/login" method="POST" class="white z-depth-2 login_form">
             <h4 class="center grey-text">Login</h4>
-            <%- messages('messages', locals) %>
-                <% if (messages.danger) { %>
-                    <div class="alert"><span class="closebtn" onclick="this.parentElement.style.display='none';"
-                            style="display: none;">&times;</span>
-                        <%= messages.danger %>
-                    </div>
-                    <% } %>
-                        <% if (messages.success) { %>
-                            <div class="alert success"><span class="closebtn"
-                                    onclick="this.parentElement.style.display='none';"
-                                    style="display: none;">&times;</span>
-                                <%= messages.success %>
-                            </div>
-                            <% } %>
-                                <div class="input-field">
-                                    <label for="username">Username</label>
-                                    <input type="text" name="username" value="">
-                                </div>
-                                <div class="input-field">
-                                    <label for="password">Password</label>
-                                    <input type="password" name="password" value="">
-                                </div>
-                                <div class="center input-field">
-                                    <input type="submit" name="submit" value="Login"
-                                        style="width: 100%; margin-top: 15px;" class="btn brand z-depth-0">
-                                </div>
-                                <p style="display: inline-block">Don't have an account?</p>
-                                <a href="/users/register">Signup</a>
+            <div class="input-field">
+                <label for="username">Username</label>
+                <input type="text" name="username" value="">
+            </div>
+            <div class="input-field">
+                <label for="password">Password</label>
+                <input type="password" name="password" value="">
+            </div>
+            <div class="center input-field">
+                <input type="submit" name="submit" value="Login" style="width: 100%; margin-top: 15px;"
+                    class="btn brand z-depth-0">
+            </div>
+            <p style="display: inline-block">Don't have an account?</p>
+            <a href="/users/register">Signup</a>
         </form>
     </section>
 
 
-    <%- include('_layouts/footer') %> 
+    <%- include('_layouts/footer') %>

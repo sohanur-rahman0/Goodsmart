@@ -13,7 +13,7 @@ const isAdmin = auth.isAdmin;
 
 
 router.get('/', (req, res) => {
-    res.render('dashboard')
+    res.render('admin/dashboard')
 })
 
 module.exports = router

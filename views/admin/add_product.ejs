@@ -9,6 +9,7 @@
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/style.css">
     <style>
 
     </style>
@@ -46,6 +47,8 @@
     <div class="container">
         <div class="white z-depth-1">
             <h4 class="center">Add new Product</h4>
+            <%- messages('messages', locals) %>
+                <%- include('../_layouts/flash_error') %>
             <form action="/admin/products/add-product" method="post" enctype="multipart/form-data"
                 style="margin-bottom: 20px; padding: 20px;">
                 <div class="input-field">
@@ -59,33 +62,42 @@
                 </div>
 
                 <div class="input-field">
-                    <select>
+                    <select name="category">
                         <option value="" disabled selected>Choose a Category</option>
                         <% categories.forEach((cat)=> { %>
-                            <option value="<%= cat.slug %>">
-                                <%= cat.title %>
-                            </option>
+                            <option value="<%= cat.slug %>"><%= cat.title %></option>
                             <% }) %>
-
                     </select>
                     <label>Category</label>
                 </div>
                 <div class="input-field">
-                    <input type="file" name="image" class="" id="img">
-                    <label for="image">Image</label>
-                    <img src="#" id="imgPreview" alt="" srcset="">
+                    <img src="#" id="imgPreview" alt="" srcset="" style="width: 100px;">
                 </div>
-                <label for="editor">Product Description</label>
-
+                <div class="file-field input-field">
+                    <div class="btn">
+                        <span>Upload Product Image</span>
+                        <input type="file" name="image" id="img">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+                </div>
+                <label for="editor" class="brower-default">Product Description</label>
                 <div class="input-field">
                     <textarea name="desc" id="editor" class="browser-default"><%= desc %></textarea>
 
                 </div>
 
                 <input type="submit" value="Submit" class="btn">
-                <a href="" class="btn"><i class="material-icons left">arrow_back</i>Go Back</a>
+                <a href="/admin/products" class="btn"><i class="material-icons left">arrow_back</i>Go Back</a>
             </form>
         </div>
+
+
+
+
+
+    </div>
     </div>
 
 

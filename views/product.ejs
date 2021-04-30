@@ -1,0 +1,48 @@
+<%- include('_layouts/header') %>
+
+    <section class="mt-20">
+        <div class="container">
+            <div class="row product-wrapper z-depth-1">
+
+                <div class="col s12 m6 l6 white h100">
+
+                    <img class="" style="width: 100%; height: 100%;"
+                        src="/product_images/<%= p.id %>/<%= p.image %>"
+                        alt="">
+
+                </div>
+                <div class="col s12 m6 l6 h100 white">
+                    <div class="" style="padding: 30px; height: 100%;">
+                        <h5><%= p.title %></h5>
+
+                        <p>Category: <%= p.category %></p>
+
+                        <p>Offers: None</p>
+
+                        <h6 class="orange-text text-darken-5">Price: ৳<%= p.price %>/-</h6>
+                        <% if (loggedIn) { %>
+                        <a href="/cart/add/<%= p.slug %>" class="btn-large waves-effect waves-light orange">Add to cart</a>
+                        <% } else {%>
+                            <p>You must be logged In to purchase items</p>
+                        <% } %>
+                    </div>
+                </div>
+
+
+                <!-- </div> -->
+            </div>
+
+            <div class="row white z-depth-1">
+                <div class="col s12 m12 l12">
+                    <div class="" style="padding: 10px">
+                        <h5>Product Specification</h5>
+                        <%= p.desc %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <%- include('_layouts/footer') %> 
+
+
+    

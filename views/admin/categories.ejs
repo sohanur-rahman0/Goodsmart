@@ -9,6 +9,7 @@
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/style.css">
     <style>
         /* The alert message box */
         .alert {
@@ -84,45 +85,33 @@
 
             <h4 class="center">Categories List</h4>
             <%- messages('messages', locals) %>
-                <% if (messages.danger) { %>
-                    <div class="alert"><span class="closebtn" onclick="this.parentElement.style.display='none';"
-                            style="display: none;">&times;</span>
-                        <%= messages.danger %>
-                    </div>
-                    <% } %>
-                        <% if (messages.success) { %>
-                            <div class="alert success"><span class="closebtn"
-                                    onclick="this.parentElement.style.display='none';"
-                                    style="display: none;">&times;</span>
-                                <%= messages.success %>
-                            </div>
-                            <% } %>
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>Category</th>
-                                            <th>Actions</th>
-                                        </tr>
-                                    </thead>
+                <%- include('../_layouts/flash_error') %>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
 
-                                    <tbody>
-                                        <% categories.forEach((cat)=> { %>
-                                            <tr>
-                                                <td>
-                                                    <%= cat.title %>
-                                                </td>
-                                                <td><a href="/admin/categories/edit-category/<%= cat._id %>"><i
-                                                            class="material-icons">update</i></a> <a
-                                                        href="/admin/categories/delete-category/<%= cat._id %>"><i
-                                                            class="material-icons">delete</i></a>
-                                                </td>
-                                            </tr>
-                                            <% }) %>
+                        <tbody>
+                            <% categories.forEach((cat)=> { %>
+                                <tr>
+                                    <td>
+                                        <%= cat.title %>
+                                    </td>
+                                    <td><a href="/admin/categories/edit-category/<%= cat._id %>"><i
+                                                class="material-icons">update</i></a> <a
+                                            href="/admin/categories/delete-category/<%= cat._id %>"><i
+                                                class="material-icons">delete</i></a>
+                                    </td>
+                                </tr>
+                                <% }) %>
 
-                                    </tbody>
-                                </table>
-                                <a class="btn" href="/admin/categories/add-category" style="margin: 20px 0"><i
-                                        class="material-icons left">create</i>Create Category</a>
+                        </tbody>
+                    </table>
+                    <a class="btn" href="/admin/categories/add-category" style="margin: 20px 0"><i
+                            class="material-icons left">create</i>Create Category</a>
 
         </div>
 

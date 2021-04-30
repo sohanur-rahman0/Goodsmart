@@ -9,6 +9,7 @@
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/style.css">
     <style>
 
     </style>
@@ -45,7 +46,9 @@
     <!-- lists category -->
     <div class="container">
         <div class="white z-depth-1">
-            <h4 class="center">Add new Product</h4>
+            <h4 class="center">Update Product</h4>
+            <%- messages('messages', locals) %>
+                <%- include('../_layouts/flash_error') %>
             <form action="/admin/products/edit-product/<%= id %>" method="post" enctype="multipart/form-data"
                 style="margin-bottom: 20px; padding: 20px;">
                 <div class="input-field">
@@ -73,19 +76,23 @@
                     <label>Category</label>
                 </div>
                 <div class="input-field">
-                    <label for="">Current Image</label>
+                    <p for="">Current Image</p>
                     <p>
                         <% if (image=="" ) { %>
-                            <img src="/images/noimage.png" class="noimage" alt="" srcset="">
+                            <img src="/images/noimage.png" class="noimage" alt="" srcset="" style="width: 100px">
                             <% } else { %>
-                                <img src="/product_images/<%= id %>/<%= image %>" class="noimage" alt="" srcset="">
+                                <img src="/product_images/<%= id %>/<%= image %>" class="noimage" alt="" srcset="" style="width: 100px">
                                 <% } %>
                     </p>
                 </div>
-                <div class="input-field">
-                    <input type="file" name="image" class="" id="img">
-                    <label for="image">Image</label>
-                    <img src="#" id="imgPreview" alt="" srcset="">
+                <div class="file-field input-field">
+                    <div class="btn">
+                        <span>Upload Product Image</span>
+                        <input type="file" name="image" id="img">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
                 </div>
                 <label for="editor">Product Description</label>
 
@@ -95,7 +102,7 @@
                 </div>
                 <input type="hidden" name="pimage" value="<%= image %>">
                 <input type="submit" value="Submit" class="btn">
-                <a href="" class="btn"><i class="material-icons left">arrow_back</i>Go Back</a>
+                <a href="/admin/products" class="btn"><i class="material-icons left">arrow_back</i>Go Back</a>
             </form>
         </div>
     </div>

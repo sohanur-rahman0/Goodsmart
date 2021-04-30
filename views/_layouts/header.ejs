@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <style>
+        @font-face {
+            font-family: gacor;
+            src: url(fonts/Gacor.ttf);
+        }
+
+        .logo {
+            font-family: gacor;
+            font-size: 1.8rem !important;
+            margin-left: 5px;
+        }
+
+        .row {
+            margin-top: 40px;
+        }
+
+        .card:hover {
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+        }
+
+        .circle-badge {
+            border-radius: 50% !important;
+            min-width: 1rem !important;
+            vertical-align: super;
+            margin-left: -8px !important;
+            margin-bottom: 20px !important;
+
+        }
+        .h100{
+            height: 100%;
+        }
+        .payment-container {
+            padding: 20px;
+        }
+
+        .searchbox {
+            /* margin: 10px; */
+            padding: 1px 10px;
+        }
+
+        .search-btn {
+            margin: 0 0 10px 0px;
+        }
+    </style>
+</head>
+
+<body class="grey lighten-4">
+    <!-- navbar -->
+    <header>
+
+        <ul class="sidenav" id="mobile-demo">
+            
+            <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Categories<i
+                        class="material-icons right">arrow_drop_down</i></a></li>
+            <li><a href="/cart/checkout"><i class="material-icons">shopping_cart</i><span class="badge new red"
+                        data-badge-caption="">4</span></a>
+            </li>
+            <% if (user) { %>
+                <li><a href="/users/logout">Hi, <%= user.username %> Logout</a></li>
+                <% } else { %>        
+            <li><a href="/users/login">Login</a></li>
+            <% } %>
+
+        </ul>
+
+        <ul id="dropdown1" class="dropdown-content">
+            <% categories.forEach((c)=> { %>
+            <li><a href="/products/<%= c.slug %>"><%= c.title %></a></li>
+            <li class="divider"></li>
+            <% }) %> 
+        </ul>
+
+        <ul id="dropdown2" class="dropdown-content">
+            <% categories.forEach((c)=> { %>
+                <li><a href="/products/<%= c.slug %>"><%= c.title %></a></li>
+                <li class="divider"></li>
+            <% }) %> 
+        </ul>
+
+
+        <nav>
+            <div class="nav-wrapper grey darken-4">
+                <a href="/" class="brand-logo logo">Goods<span class="orange-text text-darken-4">mart</span></a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+
+                <ul class="right hide-on-med-and-down">
+                    <li><a class="dropdown-trigger" href="#!" data-target="dropdown2">Categories<i
+                                class="material-icons right">arrow_drop_down</i></a></li>
+                    <li><a href="/cart/checkout"><i class="material-icons" style="display: inline-block;">shopping_cart</i>
+                            <span class="circle-badge badge new" data-badge-caption=""><% if (typeof(cart) !== "undefined") { %>
+                                <%= cart.length %>
+                                <% } else { %>
+                                    0
+                            <% } %></span>
+                        </a></li>
+                    <% if (user) { %>
+                        <li><a href="/users/logout">Hi, <%= user.username %> Logout</a></li>
+                        <% } else { %>        
+                    <li><a href="/users/login">Login</a></li>
+                    <% } %>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <%- messages('messages', locals) %>
+    <%- include('../_layouts/flash_error') %>

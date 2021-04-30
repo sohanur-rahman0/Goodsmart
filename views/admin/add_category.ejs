@@ -84,33 +84,20 @@
 
             <h4 class="center">Add new Category</h4>
             <%- messages('messages', locals) %>
-                <% if (messages.danger) { %>
-                    <div class="alert"><span class="closebtn" onclick="this.parentElement.style.display='none';"
-                            style="display: none;">&times;</span>
-                        <%= messages.danger %>
-                    </div>
-                    <% } %>
-                        <% if (messages.success) { %>
-                            <div class="alert success"><span class="closebtn"
-                                    onclick="this.parentElement.style.display='none';"
-                                    style="display: none;">&times;</span>
-                                <%= messages.success %>
+                <%- include('../_layouts/flash_error') %>
+                    <form action="/admin/categories/add-category" method="post"
+                        style="margin-bottom: 20px; padding: 20px;">
+                        <div class="input-field">
+                            <input name="title" value="" id="" type="text" class="">
+                            <label class="" for="">Title</label>
+                            <div class="red-text">
+                                <%= errors.title %>
                             </div>
-                            <% } %>
-                                <form action="/admin/categories/add-category" method="post"
-                                    style="margin-bottom: 20px; padding: 20px;">
-                                    <div class="input-field">
-                                        <input name="title" value="" id="" type="text" class="">
-                                        <label class="" for="">Title</label>
-                                        <div class="red-text">
-                                            <%= errors.title %>
-                                        </div>
-                                    </div>
-                                    <input type="submit" value="Submit" class="btn">
-                                    <a href="/admin/categories" class="btn"><i
-                                            class="material-icons left">arrow_back</i>Go
-                                        Back</a>
-                                </form>
+                        </div>
+                        <input type="submit" value="Submit" class="btn">
+                        <a href="/admin/categories" class="btn"><i class="material-icons left">arrow_back</i>Go
+                            Back</a>
+                    </form>
         </div>
     </div>
 

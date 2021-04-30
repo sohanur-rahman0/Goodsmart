@@ -9,6 +9,7 @@
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/style.css">
     <style>
 
     </style>
@@ -46,6 +47,8 @@
     <!-- product list -->
     <div class="white z-depth-1" style="padding:0 5px; margin:5px;">
         <h4 class="center">Products List</h4>
+        <%- messages('messages', locals) %>
+                <%- include('../_layouts/flash_error') %>
         <% if (count> 0 ) { %>
             <table>
                 <thead>

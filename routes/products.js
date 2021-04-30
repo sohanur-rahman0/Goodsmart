@@ -22,7 +22,7 @@ router.get('/', (req, res) => {
             }
             
             res.render('all_products', {
-                title: "BookMart",
+                title: "Welcome to Goodsmart",
                 products: products,
                 categories: c
             })
@@ -81,9 +81,9 @@ router.get('/products/:category/:product', (req, res) => {
                     //  console.log(err)
                 //  } else {
                     //  galleryImages = files;
-
+                    console.log(product)
                      res.render('product', {
-                        //  title: product.title,
+                        title: product.title,
                          p: product,
                         //  galleryImages: galleryImages,
                          loggedIn: loggedIn,

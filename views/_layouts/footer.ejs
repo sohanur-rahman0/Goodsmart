@@ -1,0 +1,109 @@
+<!-- footer -->
+
+<footer class="page-footer grey darken-3">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 l6">
+                <h5 class="logo" style="margin-left: 0">Goods<span class="orange-text text-darken-4">mart</span>
+                </h5>
+                <p>We are a local shopping platform based on Rajshahi. we sell books, computer, Electronics and many
+                    varities of products at best prices possible.
+                </p>
+                </p>
+                <p>We encourage local businesses who don't have any online presence to sell their product with us.
+                    Our goal is to satisfy the needs of our customer.
+                </p>
+            </div>
+            <div class="col s6 l4 offset-12">
+                <h5>Connect</h5>
+                <ul>
+                    <li><a href="" class="grey-text text-lighten-3">Facebook</a></li>
+
+                    <li><a href="" class="grey-text text-lighten-3">LinkedIn</a></li>
+                    <li><a href="" class="grey-text text-lighten-3">Instagram</a></li>
+                </ul>
+            </div>
+            <div class="col s6 l2">
+                <h5>Help</h5>
+                <ul>
+                    <li><a href="" class="grey-text text-lighten-3">How to buy</a></li>
+                    <li><a href="" class="grey-text text-lighten-3">FAQ</a></li>
+                    <li><a href="" class="grey-text text-lighten-3">Contact Us</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-copyright grey darken-4">
+        <div class="container center-align">
+            &copy; Goodsmart <span id="year"></span>
+        </div>
+    </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.sidenav').sidenav();
+        $('.dropdown-trigger').dropdown();
+        $('.carousel').carousel({
+            indicators: true
+        });
+        $('.slider').slider();
+        document.querySelector('#year').innerHTML = new Date().getFullYear();
+        // $('input.autocomplete').autocomplete({
+        //     data: {
+        //         "Apple": null,
+        //         "Microsoft": null,
+        //         "Google": 'https://placehold.it/250x250'
+        //     },
+        // });
+        $('.clearcart').on('click', () => {
+        if (!confirm('Confirm clearing cart!')) {
+            return false;
+        }
+    })
+
+         //search completion
+
+    $('#searchbox').autocomplete({
+      source: function(req,res){
+          $.ajax({
+              url:"/search",
+              dataType: "json",
+              type: "get",
+              data:req,
+              success: function(data){
+                  // let source = []
+                  // if(data){
+                  //     data.forEach(element => {
+
+                  //         source.push(element.name)
+                  //     });
+                  //     res(source)
+                  // }
+                  res(data)
+                  
+              },
+              error: function(err){
+                  console.log(err.status)
+              }
+          })
+      },
+
+      minLength: 1,
+      select: function(event,ui){
+          if(ui.item){
+              
+              $('#searchbox').val(ui.item.label)
+          }
+      }
+  })
+    });
+</script>
+</body>
+
+</html>

@@ -114,6 +114,7 @@ router.get('/search', (req,res)=>{
           data.forEach(el => {
             arr.push(el.title)
           })
+          console.log(arr)
           res.json(arr)
         }
     }).limit(5)  
@@ -135,6 +136,7 @@ router.post('/search', (req, res)=>{
         }
          else {
             res.render('product', {
+                title: "Search Result",
                 p: data[0],
                 loggedIn: loggedIn,
             })

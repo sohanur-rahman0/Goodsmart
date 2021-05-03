@@ -64,8 +64,8 @@
                                 src="/product_images/<%= p.id %>/<%= p.image %>" alt="this is a product image">
                         </div>
                         <div class="card-content">
-                            <h6 class="grey-text text-darken-4"><%= p.title %></h6>
-                            <p class="orange-text text-darken-5">Price: ৳<%= parseFloat(p.price).toFixed(2) %>/-</p>
+                            <h6 class="grey-text text-darken-4 truncate"><%= p.title %></h6>
+                            <p class="orange-text text-darken-5" style="font-weight: bold;">Price: ৳<%= parseFloat(p.price).toFixed(2) %>/-</p>
                         </div>
                     </div>
                 </a>

@@ -1,6 +1,6 @@
 <%- include('_layouts/header') %>
     <!-- cart items -->
-
+    
     <section>
         <div class="row">
             <div class="col l8 m12 s12">
@@ -134,23 +134,36 @@ C0.128,164.84,4.904,160.064,10.795,160.064z" />
                             <div class="input-field">
                                 <input type="text" name="name" id="" value="<%= user.name %>">
                                 <label for="name">Name</label>
+                                <div class="red-text">
+                                    <%= errors.name %>
+                                </div>
                             </div>
                             <div class="input-field">
                                 <input type="number" name="phone" id="" value="<%= user.phone %>">
                                 <label for="name">Phone</label>
+                                <div class="red-text">
+                                    <%= errors.phone %>
+                                </div>
                             </div>
                             <div class="input-field">
                                 <textarea id="address" name="address" class="materialize-textarea"></textarea>
                                 <label for="address">Address</label>
+                                <div class="red-text">
+                                    <%= errors.address %>
+                                </div>
                             </div>
                             <div class="input-field">
-                                <input type="number" name="trxid" id="">
+                                <input type="number" name="trxID" id="">
                                 <label for="trxID">Bkash TrxID</label>
+                                <div class="red-text">
+                                    <%= errors.trxID %>
+                                </div>
                             </div>
                             <input type="hidden" name="total_price" value="<%= total %>">
                             <div class="input-field">
-                                <button style="width: 100%;" class="waves-effect waves-light btn" type="submit"
-                                    value="Confirm Order">Confirm Order</button>
+                                <!-- <button style="width: 100%;" class="waves-effect waves-light btn" type="submit"
+                                    value="Confirm Order">Confirm Order</button> -->
+                                <input type="submit" value="Confirm Order" style="width: 100%;" class="waves-effect waves-light btn"> 
                             </div>
                         </form>
                         </div>
@@ -159,19 +172,29 @@ C0.128,164.84,4.904,160.064,10.795,160.064z" />
                             <div class="input-field">
                                 <input type="text" name="name" id="">
                                 <label for="name">Name</label>
+                                <div class="red-text">
+                                    <%= errors.name %>
+                                </div>
                             </div>
                             <div class="input-field">
                                 <input type="number" name="phone" id="">
                                 <label for="name">Phone</label>
+                                <div class="red-text">
+                                    <%= errors.phone %>
+                                </div>
                             </div>
                             <div class="input-field">
-                                <textarea id="address" class="materialize-textarea"></textarea>
+                                <textarea id="address" name="address" class="materialize-textarea"></textarea>
                                 <label for="address">Address</label>
+                                <div class="red-text">
+                                    <%= errors.address %>
+                                </div>
                             </div>
                             <input type="hidden" name="total_price" value="<%= total %>">
                             <div class="input-field">
-                                <button style="width: 100%;" class="waves-effect waves-light btn" type="submit"
-                                    value="Confirm Order">Confirm Order</button>
+                                <!-- <button style="width: 100%;" class="waves-effect waves-light btn" type="submit"
+                                    value="Confirm Order">Confirm Order</button> -->
+                                <input type="submit" value="Confirm Order" style="width: 100%;" class="waves-effect waves-light btn">    
                             </div>
                         </form>
                         </div>

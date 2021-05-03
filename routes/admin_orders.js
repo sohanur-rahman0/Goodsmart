@@ -32,6 +32,34 @@ router.get('/', (req,res)=>{
 })
 
 
+router.get('/change_status/:order_id', (req,res)=>{
+
+    let id = req.params.order_id
+
+    Orders.findById(id, (err, order)=>{
+        if(err){
+            console.log(err)
+        } else {
+            order.delivery_status = true;
+
+            order.save((err)=>{
+                if(err){
+                    console.log(err)
+                } else {
+                    req.flash('success', 'Order status updated')
+                    res.redirect('/admin/orders')
+                }
+            })
+            
+        }
+
+        // req.flash('danger', 'Order not found')
+        // res.redirect('/admin/dashboard')
+
+    })
+})
+
+
 
 
 module.exports = router

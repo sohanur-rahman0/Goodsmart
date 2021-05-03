@@ -159,9 +159,13 @@ router.post('/bkash',
         let errors = validationResult(req)
 
         if(errors.errors.length > 0){
+            let err = {}
+            errors.errors.forEach((error) => {
+                err[error.param] = error.msg
+            })
             res.render('checkout', {
                 title: 'checkout',
-                errors: errors,
+                errors: err,
 
             })
         } else {
@@ -219,9 +223,13 @@ router.post('/cash',
         let errors = validationResult(req)
 
         if(errors.errors.length > 0){
+            let err = {}
+            errors.errors.forEach((error) => {
+                err[error.param] = error.msg
+            })
             res.render('checkout', {
                 title: 'checkout',
-                errors: errors,
+                errors: err,
 
             })
         } else {

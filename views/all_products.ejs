@@ -5,7 +5,7 @@
     <section>
         
         <div class="searchbox white z-depth-1">
-            <form action="/search" method="post">
+            <form autocomplete="off" action="/search" method="post">
             <div style="width: 94%; display: inline-block;" class="input-field">
                 <input type="text" name="searchbox" id="searchbar" class="autocomplete">
                 <label for="searchbar">Search<i style="margin-right: 0"
@@ -75,5 +75,6 @@
     </section>
     <!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
         integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script> -->
+        
 
     <%- include('_layouts/footer') %> 

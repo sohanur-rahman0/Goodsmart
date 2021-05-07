@@ -6,7 +6,7 @@
 
                 <div class="col s12 m6 l6 white h100">
 
-                    <img class="" style="width: 100%; height: 100%;"
+                    <img class="responsive-img materialboxed" style="width: 100%; height: 100%;"
                         src="/product_images/<%= p.id %>/<%= p.image %>"
                         alt="this is a product image">
 
@@ -14,12 +14,13 @@
                 <div class="col s12 m6 l6 h100 white">
                     <div class="" style="padding: 30px; height: 100%;">
                         <h5><%= p.title %></h5>
-
+                        <br>
                         <p>Category: <%= p.category %></p>
-
+                        <br>
                         <p>Offers: None</p>
-
+                        <br>
                         <h6 class="orange-text text-darken-5">Price: ৳<%= p.price %>/-</h6>
+                        <br>
                         <% if (loggedIn) { %>
                         <a href="/cart/add/<%= p.slug %>" class="btn-large waves-effect waves-light orange">Add to cart</a>
                         <% } else {%>

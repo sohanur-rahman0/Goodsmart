@@ -1,3 +1,5 @@
+
+
 $(document).ready(function () {
     $('.sidenav').sidenav();
     $('.dropdown-trigger').dropdown();
@@ -5,6 +7,7 @@ $(document).ready(function () {
         indicators: true
     });
     $('.slider').slider();
+    $('.materialboxed').materialbox();
     document.querySelector('#year').innerHTML = new Date().getFullYear();
     // $('.autocomplete').autocomplete({
     //     data: {
@@ -54,45 +57,6 @@ $(document).ready(function () {
         if (!confirm('Confirm clearing cart!')) {
             return false;
         }
-    }) 
-    
-    
-    //search completion
-
-    $('#searchbar').autocomplete({
-        source: function(req,res){
-            $.ajax({
-                url:"/search",
-                dataType: "json",
-                type: "get",
-                data:req,
-                success: function(data){
-                    // let source = []
-                    // if(data){
-                    //     data.forEach(element => {
-  
-                    //         source.push(element.name)
-                    //     });
-                    //     res(source)
-                    // }
-                    console.log(data)
-                    res(data)
-                    
-                },
-                error: function(err){
-                    console.log(err.status)
-                }
-            })
-        },
-  
-        minLength: 1,
-        select: function(event,ui){
-            if(ui.item){
-                
-                $('#searchbar').val(ui.item.label)
-            }
-        }
-    })
-      
+    })   
 
 });

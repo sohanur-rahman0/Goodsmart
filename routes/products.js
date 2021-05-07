@@ -48,12 +48,13 @@ router.get('/products/:category', (req, res) => {
                 console.log(err)
             }
             // console.log(c)
+            //console.log(res.app.locals.categories)
     
             res.render('cat_products', {
                 // title: c.title,
                 title: "Category Products",
                 products: products,
-                categories: c,
+                categories: res.app.locals.categories,
                 
             })
     
@@ -105,16 +106,16 @@ router.get('/products/:category/:product', (req, res) => {
 
 router.get('/search', (req,res)=>{
     let q = req.query["term"]
-    
+    // console.log('autocomplete request')
     Product.find({title: {$regex: new RegExp(q), $options: "i"}}, (err,data)=>{
         if (err){
             console.log(err)
         } else {
-          let arr = []
+          let arr = {}
           data.forEach(el => {
-            arr.push(el.title)
+            arr[el.title]="http://"+ req.headers.host+"/product_images/"+el._id+"/"+el.image
           })
-          console.log(arr)
+        //   console.log(arr)
           res.json(arr)
         }
     }).limit(5)  
@@ -131,7 +132,7 @@ router.post('/search', (req, res)=>{
         if(err){
             console.log(err)
         } else if(data.length ==0){
-                req.flash('error', 'No Books found with that name')
+                req.flash('danger', 'No product found with that name')
                 res.redirect('/')
         }
          else {

@@ -12,10 +12,6 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="/stylesheets/style.css">
     <link rel="stylesheet" href="/stylesheets/main.css">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 
 <body class="grey lighten-4">
@@ -27,7 +23,11 @@
             <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Categories<i
                         class="material-icons right">arrow_drop_down</i></a></li>
             <li><a href="/cart/checkout"><i class="material-icons">shopping_cart</i><span class="badge new red"
-                        data-badge-caption="">4</span></a>
+                        data-badge-caption=""><% if (typeof(cart) !== "undefined") { %>
+                            <%= cart.length %>
+                            <% } else { %>
+                                0
+                        <% } %></span></a>
             </li>
             <% if (user) { %>
                 <li><a href="/users/logout">Hi, <%= user.username %> Logout</a></li>

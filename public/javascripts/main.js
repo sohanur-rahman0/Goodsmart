@@ -9,41 +9,35 @@ $(document).ready(function () {
     $('.slider').slider();
     $('.materialboxed').materialbox();
     document.querySelector('#year').innerHTML = new Date().getFullYear();
-    // $('.autocomplete').autocomplete({
-    //     data: {
-    //         "Apple": null,
-    //         "Microsoft": null,
-    //         "Google": 'https://placehold.it/250x250'
-    //     },
-    // });
+    
 
     //signup
-    // const inputs = document.querySelectorAll('input');
+    const inputs = document.querySelectorAll('input.validation');
 
-    // const patterns = {
-    //     phone: /^[0-9]{11}$/,
-    //     username: /^[a-zA-Z\d]{5,12}$/,
-    //     password: /^[\w@-]{8,20}$/i,
-    //     email: /^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/
-    // }
+    const patterns = {
+        phone: /^[0-9]{11}$/,
+        username: /^[a-zA-Z\d]{5,20}$/,
+        password: /^[\w@-]{8,20}$/i,
+        email: /^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/
+    }
 
-    // //validate
-    // function validate(field, regex) {
-    //     if (regex.test(field.value)) {
-    //         field.className = 'valid';
-    //         $('#submit').removeClass('disabled');
-    //     } else {
-    //         field.className = 'invalid';
-    //         $('#submit').addClass('disabled');
-    //     }
-    // }
+    //validate
+    function validate(field, regex) {
+        if (regex.test(field.value)) {
+            field.className = 'valid';
+            $('#submit').removeClass('disabled');
+        } else {
+            field.className = 'invalid';
+            $('#submit').addClass('disabled');
+        }
+    }
 
-    // inputs.forEach((input) => {
-    //     input.addEventListener('keyup', (e) => {
-    //         //console.log(e.target.attributes.name.value);
-    //         validate(e.target, patterns[e.target.attributes.name.value]);
-    //     })
-    // })
+    inputs.forEach((input) => {
+        input.addEventListener('keyup', (e) => {
+            //console.log(e.target.attributes.name.value);
+            validate(e.target, patterns[e.target.attributes.name.value]);
+        })
+    })
 
     //product_details
    

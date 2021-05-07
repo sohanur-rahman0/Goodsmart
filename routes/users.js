@@ -22,12 +22,10 @@ router.get('/register', (req, res) => {
 router.post('/register',
     [
         check('email').isLength({ min: 1 }).withMessage('Email is required').isEmail().withMessage('Enter a valid email'),
-        check('username').isLength({ min: 1 }).withMessage('Username is required'),
+        check('username').isLength({ min: 5 }).withMessage('Username is required'),
         check('phone').isLength({ min: 11 }).withMessage('A valid Phone number is required'),
         check('password').isLength({ min: 8 }).withMessage('Password is required and should be 8 or more character'),
         check('confirm_password').custom((value, { req }) => {
-            // console.log(value)
-            // console.log(req.body.password2)
             if (value !== req.body.password) {
                 throw new Error('Confirmation password is incorrect')
             } else {
@@ -51,8 +49,6 @@ router.post('/register',
             errors.errors.forEach((error) => {
                 err[error.param] = error.msg
             })
-
-            // console.log(err)
 
             res.render('register', {
                 title: "Register",

@@ -5,7 +5,7 @@
 
 .logo {
     font-family: gacor;
-    font-size: 1.8rem !important;
+    font-size: 1.5rem !important;
     margin-left: 5px;
 }
 
@@ -50,6 +50,12 @@
     height: 550px;
 }
 
+@media only screen and (max-width: 600px) {
+    .product-wrapper {
+        height: 450px;
+    }
+  }
+
 .h100 {
     height: 100%;
 }
@@ -61,4 +67,8 @@
 
 .payment-container {
     padding: 20px;
+}
+
+.input-field .red-text{
+    font-size: 0.85rem;
 }

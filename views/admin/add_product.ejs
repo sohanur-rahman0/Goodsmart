@@ -10,11 +10,17 @@
                 <div class="input-field">
                     <input name="title" value="<%= title %>" id="" type="text" class="">
                     <label class="" for="">Title</label>
+                    <div class="red-text">
+                        <%= errors.title %>
+                    </div>
                 </div>
 
                 <div class="input-field">
                     <input name="price" value="<%= price %>" id="" type="text" class="">
                     <label class="" for="">Price</label>
+                    <div class="red-text">
+                        <%= errors.price %>
+                    </div>
                 </div>
 
                 <div class="input-field">
@@ -25,6 +31,7 @@
                             <% }) %>
                     </select>
                     <label>Category</label>
+                    
                 </div>
                 <div class="input-field">
                     <img src="#" id="imgPreview" alt="" srcset="" style="width: 100px;">
@@ -37,11 +44,16 @@
                     <div class="file-path-wrapper">
                         <input class="file-path validate" type="text">
                     </div>
+                    <div class="red-text">
+                        <%= errors.image %>
+                    </div>
                 </div>
                 <label for="editor" class="brower-default">Product Description</label>
                 <div class="input-field">
                     <textarea name="desc" id="editor" class="browser-default"><%= desc %></textarea>
-
+                    <div class="red-text">
+                        <%= errors.desc %>
+                    </div>
                 </div>
 
                 <input type="submit" value="Submit" class="btn">

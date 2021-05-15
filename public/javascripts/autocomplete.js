@@ -1,30 +1,16 @@
 $(document).ready(function() {
     //search completion
     // console.log("hello")
-    var letters = /^[A-Za-z\s]+$/;
+    // var letters = /^[A-Za-z\s]+$/;
     let req = "term="
     let searchbar = document.querySelector('#searchbar')
-    searchbar.addEventListener('keydown', (e)=>{
-        let char = e.key;
-        if(searchbar.value==""){
-            req = "term="
-        }
-        if(char=='Backspace'){
-            // console.log("back")
-            req = "term=" + searchbar.value
-        }
-        else if(char.match(letters)){
-            req+= char;
-            // console.log(req)
-        } else {
-            req = "term="
-        }
-        
+    searchbar.addEventListener('input', (e)=>{
+         
         $.ajax({
             url:"/search",
             dataType: "json",
             type: "get",
-            data:req,
+            data:req + searchbar.value,
             success: function(data){
                 custome_auto_complete(data)
             },
@@ -35,7 +21,7 @@ $(document).ready(function() {
     })
 
     function custome_auto_complete(data){
-        console.log("auto :")
+        //console.log("auto :")
         $('input.autocomplete').autocomplete({
             data: data,
             limit: 5

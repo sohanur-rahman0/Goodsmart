@@ -44,19 +44,13 @@ app.use(bodyParser.json())
 //express session middleware
 
 app.use(session({
-  secret: 'keyboard cat',
+  secret: 'AverybigSecretwithforseesion',
   resave: false,
   saveUninitialized: true,
   // cookie: { secure: true }
 }))
 
 app.use(flash());
-
-// app.use(function (req, res, next) {
-//   res.locals.success_messages = req.flash('success_messages');
-//   res.locals.error_messages = req.flash('error_messages');
-//   next();
-// });
 
 //express messages middleware
 app.use(require('connect-flash')());
@@ -65,11 +59,6 @@ app.use(function (req, res, next) {
   next();
 });
 
-// app.configure(function () {
-//   app.use(express.cookieParser('keyboard cat'));
-//   app.use(express.session({ cookie: { maxAge: 60000 } }));
-//   app.use(flash());
-// });
 
 //passport config
 

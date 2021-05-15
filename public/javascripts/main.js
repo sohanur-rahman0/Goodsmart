@@ -17,7 +17,7 @@ $(document).ready(function () {
     const patterns = {
         phone: /^[0-9]{11}$/,
         username: /^[a-zA-Z\d]{5,20}$/,
-        password: /^[\w@-]{8,20}$/i,
+        // password: /^[\w@-]{8,20}$/i,
         email: /^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/
     }
 

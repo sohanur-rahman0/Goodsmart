@@ -7,7 +7,7 @@
                 <% if (typeof(cart) !== "undefined") { %>
                 <div class="table-container white z-depth-1">
                     <h5>Cart Items</h5>
-                    <table>
+                    <table style="font-size: 12px;">
 
                         <tbody>
                             <% let total = 0 %>
@@ -19,7 +19,7 @@
                                 <td><img style="width: 60px"
                                         src="<%= product.image %>"
                                         alt=""></td>
-                                <td><%= product.title %></td>
+                                <td class="wrap"><%= product.title %></td>
                                 <td>&#2547;<%= product.price %></td>
                                 <td><a href="/cart/update/<%= product.title %>?action=remove"><i
                                     class="material-icons">remove_circle</i></a>

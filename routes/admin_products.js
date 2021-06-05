@@ -21,17 +21,31 @@ let Category = require('../models/category')
 //Get product index
 
 router.get('/', isAdmin, (req, res) => {
-    let count;
-    Product.countDocuments((err, c) => {
-        count = c
-    })
+    // let count;
+    // Product.countDocuments((err, c) => {
+    //     count = c
+    // })
 
-    Product.find((err, products) => {
-        res.render('admin/products', {
-            products: products,
-            count: count
+    // Product.find((err, products) => {
+    //     res.render('admin/products', {
+    //         products: products,
+    //         count: count
+    //     })
+    // })
+
+
+    Product.countDocuments()
+    .then(count=>{
+        Product.find()
+        .then(products => {
+            res.render('admin/products', {
+                products: products,
+                count: count
+            })
         })
+        .catch(error=> console.log(error))
     })
+    .catch(error=> console.log(error))
 })
 
 
@@ -89,13 +103,14 @@ router.post('/add-product', [
     let errors = validationResult(req)
 
     if (errors.errors.length > 0) {
-        let err = {}
+        let erro = {}
         errors.errors.forEach((error) => {
-            err[error.param] = error.msg
+            erro[error.param] = error.msg
         })
+        
         Category.find((err, categories) => {
             res.render('admin/add_product', {
-                errors: err,
+                errors: erro,
                 title: title,
                 desc: desc,
                 price: price,
@@ -254,7 +269,7 @@ router.post('/edit-product/:id', [
             err[error.param] = error.msg
         })
         req.session.errors = err
-        res.redirect('admin/products/edit-product' + id)
+        res.redirect('admin/products/edit-product/' + id);
     } else {
         Product.findOne({ slug: slug, _id: { '$ne': id } }, (err, p) => {
             if (err) {

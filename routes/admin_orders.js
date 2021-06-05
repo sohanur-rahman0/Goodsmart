@@ -12,23 +12,38 @@ const { check, validationResult } = require('express-validator')
 let Orders = require('../models/order')
 
 
-router.get('/', (req,res)=>{
+router.get('/',isAdmin, (req,res)=>{
 
-    let count;
-    Orders.countDocuments((err,c)=>{
-        count = c
-    })
+    // let count;
+    // Orders.countDocuments((err,c)=>{
+    //     count = c
+    // })
 
-    Orders.find((err,data)=>{
-        if(err) {
-            console.log(err)
-        } else {
-            res.render('admin/orders', {
-                count: count,
-                orders: data
-            })
-        }
+    // Orders.find((err,data)=>{
+    //     if(err) {
+    //         console.log(err)
+    //     } else {
+    //         res.render('admin/orders', {
+    //             count: count,
+    //             orders: data
+    //         })
+    //     }
+    // })
+
+    Orders.countDocuments()
+    .then(count=>{
+        Orders.find()
+        .then(data => {
+        res.render('admin/orders', {
+            count: count,
+            orders: data
+        })
     })
+    .catch(err => console.log(err));
+    })
+    .catch(err => console.log(err));
+
+    
 })
 
 

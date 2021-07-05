@@ -5,6 +5,7 @@ const bcrypt = require('bcryptjs')
 const { check, validationResult } = require('express-validator')
 //get Users model
 let User = require('../models/user')
+let { createActivity } = require('../handlers/activityHandler')
 
 
 //get register page
@@ -83,10 +84,11 @@ router.post('/register',
 
                             user.password = hash
 
-                            user.save((err) => {
+                            user.save((err, user) => {
                                 if (err) {
                                     console.log(err)
                                 } else {
+                                    createActivity(user.username, 'register', `New user created with username: ${user.username}`)
                                     req.flash('success', 'You are registered Now.')
                                     res.redirect('/')
                                 }
@@ -132,6 +134,13 @@ router.post('/login', (req, res, next) => {
 //get log out
 
 router.get('/logout', (req, res) => {
+    let id = req.session.passport.user
+    User.findById(id)
+    .then(user=>{
+        createActivity(user.username, 'logout', `username: ${user.username} logged out`)
+    })
+    .catch(err => console.log(err))
+
     req.logout()
     req.flash('success', 'You are logged out')
     res.redirect('/users/login')

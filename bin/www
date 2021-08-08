@@ -15,7 +15,7 @@ const { readFileSync } = require('fs')
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000')
+var port = normalizePort(process.env.PORT || '80')
 app.set('port', port)
 console.log('port :' + port)
 
@@ -37,7 +37,7 @@ const sslserver = https.createServer(
  * Listen on provided port, on all network interfaces.
  */
 sslserver.listen(port, () => {
-  console.log('SSL server running on port 3443')
+  console.log(`SSL server running on port ${port}`)
 })
 
 // server.listen(port, () => {

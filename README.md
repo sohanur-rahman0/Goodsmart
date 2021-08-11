@@ -3,10 +3,9 @@ This is a shopping platform build with node, express, mongodb. Users can sign Up
 # Dependencies
 * you must have node and mongodb installed on your system
 # Installing
-clone this repo and run these commands
+clone this repo and go to the directory and run these commands
 ### To install all the packages
 ```
-cd /Goodsmart
 npm install
 ```
 

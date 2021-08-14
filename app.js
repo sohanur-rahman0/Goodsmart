@@ -12,11 +12,12 @@ const { check, validationResult } = require('express-validator')
 const fileUpload = require('express-fileupload')
 const passport = require('passport')
 var flash = require('connect-flash')
+const dotenv = require('dotenv').config()
 // end module including section
 
 //connecting to databaese begin
 
-mongoose.connect(config.database, {
+mongoose.connect(process.env.DB_URI || config.database, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })

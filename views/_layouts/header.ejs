@@ -5,8 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="This is a local shopping platform based on Rajshahi. We sell books, computer, Electronics and many varities of products at best prices possible.">
-    <title><%= title %></title>
+    <meta name="description"
+        content="This is a local shopping platform based on Rajshahi. We sell books, computer, Electronics and many varities of products at best prices possible.">
+    <title>
+        <%= title %>
+    </title>
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -19,36 +22,42 @@
     <header>
 
         <ul class="sidenav" id="mobile-demo">
-            
+
             <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Categories<i
                         class="material-icons right">arrow_drop_down</i></a></li>
             <li><a href="/cart/checkout"><i class="material-icons">shopping_cart</i><span class="badge new red"
-                        data-badge-caption=""><% if (typeof(cart) !== "undefined") { %>
+                        data-badge-caption="">
+                        <% if (typeof(cart) !=="undefined" ) { %>
                             <%= cart.length %>
-                            <% } else { %>
-                                0
-                        <% } %></span></a>
+                                <% } else { %>
+                                    0
+                                    <% } %>
+                    </span></a>
             </li>
             <% if (user) { %>
                 <li><a href="/users/logout">Hi, <%= user.username %> Logout</a></li>
-                <% } else { %>        
-            <li><a href="/users/login">Login</a></li>
-            <% } %>
+                <% } else { %>
+                    <li><a href="/users/login">Login</a></li>
+                    <% } %>
 
         </ul>
 
         <ul id="dropdown1" class="dropdown-content">
             <% categories.forEach((c)=> { %>
-            <li><a href="/products/<%= c.slug %>"><%= c.title %></a></li>
-            <li class="divider"></li>
-            <% }) %> 
+                <li><a href="/products/<%= c.slug %>">
+                        <%= c.title %>
+                    </a></li>
+                <li class="divider"></li>
+                <% }) %>
         </ul>
 
         <ul id="dropdown2" class="dropdown-content">
             <% categories.forEach((c)=> { %>
-                <li><a href="/products/<%= c.slug %>"><%= c.title %></a></li>
+                <li><a href="/products/<%= c.slug %>">
+                        <%= c.title %>
+                    </a></li>
                 <li class="divider"></li>
-            <% }) %> 
+                <% }) %>
         </ul>
 
 
@@ -60,21 +69,27 @@
                 <ul class="right hide-on-med-and-down">
                     <li><a class="dropdown-trigger" href="#!" data-target="dropdown2">Categories<i
                                 class="material-icons right">arrow_drop_down</i></a></li>
-                    <li><a href="/cart/checkout"><i class="material-icons" style="display: inline-block;">shopping_cart</i>
-                            <span class="circle-badge badge new" data-badge-caption=""><% if (typeof(cart) !== "undefined") { %>
-                                <%= cart.length %>
-                                <% } else { %>
-                                    0
-                            <% } %></span>
+                    <li><a href="/cart/checkout"><i class="material-icons"
+                                style="display: inline-block;">shopping_cart</i>
+                            <span class="circle-badge badge new" data-badge-caption="">
+                                <% if (typeof(cart) !=="undefined" ) { %>
+                                    <%= cart.length %>
+                                        <% } else { %>
+                                            0
+                                            <% } %>
+                            </span>
                         </a></li>
                     <% if (user) { %>
                         <li><a href="/users/logout">Hi, <%= user.username %> Logout</a></li>
-                        <% } else { %>        
-                    <li><a href="/users/login">Login</a></li>
-                    <% } %>
+                        <% } else { %>
+                            <li><a href="/users/login">Login</a></li>
+                            <% } %>
+                                <% if (user?.admin==1) { %>
+                                    <li><a href="/admin/dashboard">Admin</a></li>
+                                    <% } %>
                 </ul>
             </div>
         </nav>
     </header>
     <%- messages('messages', locals) %>
-    <%- include('../_layouts/flash_error') %>
+        <%- include('../_layouts/flash_error') %>

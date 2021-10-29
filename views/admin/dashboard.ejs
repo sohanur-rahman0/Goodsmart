@@ -7,14 +7,16 @@
                     <img src="/images/users.svg" style="width: 100px; padding: 10px;">
                 </div>
                 <div class="card-content">
-                    <span class="card-title right-align">232</span>
+                    <span class="card-title right-align">
+                        <%= userCount %>
+                    </span>
                     <p class="right-align">Users</p>
                 </div>
             </div>
         </div>
 
 
-        <div class="col l3 s12 m3">
+        <!-- <div class="col l3 s12 m3">
             <div class="card">
                 <div class="card-image">
                     <img src="/images/users.svg" style="width: 100px; padding: 10px;">
@@ -25,14 +27,16 @@
                 </div>
             </div>
 
-        </div>
+        </div> -->
         <div class="col l3 s12 m3">
             <div class="card">
                 <div class="card-image">
                     <img src="/images/shopping-bag.svg" style="width: 100px; padding: 10px;">
                 </div>
                 <div class="card-content">
-                    <span class="card-title right-align">232</span>
+                    <span class="card-title right-align">
+                        <%= orderCount %>
+                    </span>
                     <p class="right-align">Orders</p>
                 </div>
             </div>
@@ -43,8 +47,10 @@
                     <img src="/images/thumb-up.svg" style="width: 100px; padding: 10px;">
                 </div>
                 <div class="card-content">
-                    <span class="card-title right-align">530</span>
-                    <p class="right-align">Likes</p>
+                    <span class="card-title right-align">
+                        <%= categoryCount %>
+                    </span>
+                    <p class="right-align">Categories</p>
                 </div>
             </div>
         </div>
@@ -54,11 +60,13 @@
                     <img src="/images/box.svg" style="width: 100px; padding: 10px;">
                 </div>
                 <div class="card-content">
-                    <span class="card-title right-align">530</span>
+                    <span class="card-title right-align">
+                        <%= productCount %>
+                    </span>
                     <p class="right-align">Product</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <%- include('../_layouts/adminfooter') %>  
+    <%- include('../_layouts/adminfooter') %>

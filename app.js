@@ -13,6 +13,7 @@ const fileUpload = require('express-fileupload')
 const passport = require('passport')
 var flash = require('connect-flash')
 const dotenv = require('dotenv').config()
+const cors = require('cors')
 // end module including section
 
 //connecting to databaese begin
@@ -32,6 +33,7 @@ db.once('open', () => {
 //connecting to database end
 
 var app = express()
+app.use(cors())
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
